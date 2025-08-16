@@ -11,26 +11,57 @@
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
     <link rel="stylesheet" href="css/love.css">
     <style>
-        /* 加快爱心动画速度 */
+        /* 图片初始动画 */
+        .body_left {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: imageIntro 1.5s forwards;
+        }
+        
+        @keyframes imageIntro {
+            0% { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 爱心初始状态 - 隐藏 */
         .love .block {
-            animation: pulse 0.5s infinite; /* 缩短脉动周期 */
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        /* 爱心脉动动画 */
+        .love .block.animate {
+            opacity: 1;
+            transform: scale(1);
+            animation: pulse 1.2s infinite;
+            transition: opacity 0.5s, transform 0.5s;
         }
         
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.08); }
             100% { transform: scale(1); }
         }
         
-        /* 加快左侧图片动画 */
-        .body_left {
-            animation: float 1.5s ease-in-out infinite; /* 缩短浮动周期 */
+        /* 爱心各部分样式 */
+        .div1, .div2, .div3, .div4 {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.3s, transform 0.3s;
         }
         
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
+        .block.animate .div1,
+        .block.animate .div2,
+        .block.animate .div3,
+        .block.animate .div4 {
+            opacity: 1;
+            transform: scale(1);
         }
     </style>
 </head>
@@ -65,19 +96,30 @@
     </div>
 
     <script type="text/javascript">
-        // 重写love.js核心逻辑，加快动画速度
         document.addEventListener('DOMContentLoaded', function() {
-            // 加快爱心生成速度
-            const blocks = document.querySelectorAll('.block > div');
-            blocks.forEach((block, index) => {
-                // 缩短延迟时间，让爱心更快出现
-                setTimeout(() => {
-                    block.style.opacity = '1';
-                    block.style.transform = 'scale(1)';
-                }, index * 10); // 每个元素间隔100ms出现，原版可能是300-500ms
-            });
-
-            // 处理音频播放
+            // 获取元素
+            const imageContainer = document.querySelector('.body_left');
+            const loveBlock = document.querySelector('.block');
+            const loveParts = document.querySelectorAll('.block > div');
+            
+            // 图片动画时长（与CSS中保持一致）
+            const imageAnimationDuration = 1500; // 1.5秒
+            
+            // 图片动画结束后，开始爱心动画
+            setTimeout(() => {
+                // 激活爱心容器动画
+                loveBlock.classList.add('animate');
+                
+                // 依次显示爱心各部分，增加层次感
+                loveParts.forEach((part, index) => {
+                    setTimeout(() => {
+                        part.style.opacity = '1';
+                        part.style.transform = 'scale(1)';
+                    }, index * 100); // 每个部分间隔0.1秒出现
+                });
+            }, imageAnimationDuration);
+            
+            // 音频播放处理
             const audio = document.getElementById('audios');
             audio.volume = 0.5;
             document.body.addEventListener('click', () => {
@@ -89,4 +131,3 @@
 </body>
 
 </html>
-    
