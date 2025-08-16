@@ -11,21 +11,29 @@
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
     <link rel="stylesheet" href="css/love.css">
     <style>
-        /* 新增文字样式 */
-        .visible-text {
-            text-align: center;
-            font-size: 18px;
-            color: #333;
-            margin: 20px 0;
-            padding: 0 20px;
-            font-weight: bold;
+        /* 确保文字区域不受其他样式影响 */
+        .text-display {
+            /* 强制显示在页面中 */
+            display: block !important;
+            visibility: visible !important;
+            
+            /* 文字样式 */
+            color: #000 !important; /* 黑色文字，确保可见 */
+            font-size: 20px !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            padding: 20px !important;
+            margin: 10px auto !important;
+            max-width: 80% !important;
+            
+            /* 避免被其他元素遮挡 */
+            position: relative !important;
+            z-index: 10 !important;
         }
         
-        @media (max-width: 768px) {
-            .visible-text {
-                font-size: 16px;
-                margin: 15px 0;
-            }
+        /* 确保容器有足够空间显示文字 */
+        .container {
+            margin-bottom: 40px;
         }
     </style>
 </head>
@@ -52,8 +60,8 @@
         </div>
     </div>
 
-    <!-- 新增的可见文字 -->
-    <div class="visible-text">
+    <!-- 这个文字区域会强制显示 -->
+    <div class="text-display">
         马子轩小朋友，你是这世界上最值得被温柔对待的人呀
     </div>
 
@@ -65,6 +73,17 @@
     </div>
 
     <script type="text/javascript" src="js/love.js"></script>
+    <script>
+        // 页面加载后强制显示文字
+        window.onload = function() {
+            const textElement = document.querySelector('.text-display');
+            if (textElement) {
+                textElement.style.display = 'block';
+                textElement.style.opacity = '1';
+            }
+        };
+    </script>
 
 </body>
 </html>
+    
