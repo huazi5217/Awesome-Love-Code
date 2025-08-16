@@ -2,13 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>小孙同学</title>
+    <title>马子轩女士</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="language" content="zh-CN">
-    <meta name="title" content="小孙同学">
+    <meta name="title" content="马子轩小朋友">
     <meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code">
     <meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! ">
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
     <link rel="stylesheet" href="css/love.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 新增文字区域样式 */
+        .final-message {
+            max-width: 600px;
+            margin: 40px auto 60px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            color: #333;
+            line-height: 1.8;
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 1.5s;
+        }
+        
+        .final-message p {
+            margin-bottom: 15px;
+        }
+        
+        .final-message p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .highlight {
+            color: #e63946;
+            font-weight: bold;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 适配移动端 */
+        @media (max-width: 768px) {
+            .final-message {
+                margin: 20px 15px 40px;
+                padding: 20px;
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -20,7 +69,7 @@
     <div class="container" onselectstart="return false;" unselectable="on" style="-moz-user-select:none;">
 
         <div class="body_left">
-            <img src="images/biubiubiu.gif" alt="" ondragstart='return false;'>
+            <img src="images/biubiubiu.gif" alt="可爱的动态图片" ondragstart='return false;'>
         </div>
 
         <div class="body_center love">
@@ -40,7 +89,23 @@
         </div>
     </div>
 
+    <!-- 添加的文字内容 -->
+    <div class="final-message">
+        <p>马子轩小朋友，我知道你现在正处在最关键的阶段，要面对那么多试卷和知识点，肯定会很累。别担心，我会一直在这儿等你，陪着你走过这段日子。</p>
+        <p>我们不用急着每天说话，你安心冲刺，我认真规划我们的未来。等你考完，我们就去见一面，我想带你去吃遍我学校附近的小吃，想牵着你的手走在傍晚的街道上，把这些日子攒的思念都慢慢讲给你听。</p>
+        <p>你只管往前跑，我会在你看得见的地方，做你最稳的后盾呀。<i class="fas fa-heart" style="color: #e63946;"></i></p>
+    </div>
+
     <script type="text/javascript" src="js/love.js"></script>
+    <script>
+        // 处理音频自动播放限制
+        document.addEventListener('click', function() {
+            const audio = document.getElementById('audios');
+            if (audio.paused) {
+                audio.play().catch(e => console.log('需要用户交互才能播放音频'));
+            }
+        }, { once: true });
+    </script>
 
 </body>
 
