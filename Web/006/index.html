@@ -3,24 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>马子轩小朋友</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="language" content="zh-CN">
     <meta name="title" content="马子轩小朋友">
     <meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code">
     <meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! ">
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
     <link rel="stylesheet" href="css/love.css">
+    <style>
+        /* 加快爱心动画速度 */
+        .love .block {
+            animation: pulse 0.8s infinite; /* 缩短脉动周期 */
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* 加快左侧图片动画 */
+        .body_left {
+            animation: float 1.5s ease-in-out infinite; /* 缩短浮动周期 */
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
 </head>
 
 <body>
 
-    <audio autoplay="autopaly" loop="loop" id="audios" preload="auto">
+    <audio autoplay loop id="audios" preload="auto">
         <source src="MP3/1.mp3" />
     </audio>
 
     <div class="container" onselectstart="return false;" unselectable="on" style="-moz-user-select:none;">
 
         <div class="body_left">
-            <img src="images/biubiubiu.gif" alt="" ondragstart='return false;'>
+            <img src="images/biubiubiu.gif" alt="动态图片" ondragstart='return false;'>
         </div>
 
         <div class="body_center love">
@@ -40,8 +64,29 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="js/love.js"></script>
+    <script type="text/javascript">
+        // 重写love.js核心逻辑，加快动画速度
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加快爱心生成速度
+            const blocks = document.querySelectorAll('.block > div');
+            blocks.forEach((block, index) => {
+                // 缩短延迟时间，让爱心更快出现
+                setTimeout(() => {
+                    block.style.opacity = '1';
+                    block.style.transform = 'scale(1)';
+                }, index * 100); // 每个元素间隔100ms出现，原版可能是300-500ms
+            });
+
+            // 处理音频播放
+            const audio = document.getElementById('audios');
+            audio.volume = 0.5;
+            document.body.addEventListener('click', () => {
+                audio.play().catch(e => console.log('需要用户交互才能播放音乐'));
+            }, { once: true });
+        });
+    </script>
 
 </body>
 
 </html>
+    
