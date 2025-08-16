@@ -1,35 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>马子轩小朋友</title>
+    <title>马子轩小朋友小朋友</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="language" content="zh-CN">
-    <meta name="title" content="马子轩小朋友">
-    <meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code">
-    <meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! ">
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
-    <link rel="stylesheet" href="css/love.css">
+    <!-- 移除外部CSS依赖，避免冲突 -->
     <style>
-        /* 爱心基础样式 - 确保显示 */
-        .love {
-            position: relative;
-            width: 100%;
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        /* 左侧图片样式 */
+        .body_left {
+            margin: 0 auto 30px;
+        }
+        
+        .body_left img {
+            width: 120px;
+            height: 120px;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        /* 爱心容器 */
+        .body_center {
+            margin: 0 auto 40px;
+            width: 200px;
             height: 200px;
-            margin: 20px 0;
+        }
+        
+        /* 爱心核心样式 - 确保显示 */
+        .love {
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
         
         .block {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 180px;
+            top: 10px;
+            left: 0;
         }
         
+        /* 爱心各部分 - 明确样式 */
         .div1, .div2, .div3, .div4 {
-            background-color: #ff4081 !important; /* 强制粉色背景 */
+            background-color: #ff4081;
             position: absolute;
-            opacity: 1 !important; /* 强制显示 */
         }
         
         .div1, .div2, .div3 {
@@ -62,66 +97,78 @@
             border-radius: 50%;
         }
         
-        /* 文字区域样式 */
+        /* 文字样式 */
         .text-display {
-            display: block !important;
-            visibility: visible !important;
-            color: #000 !important;
-            font-size: 20px !important;
-            font-weight: bold !important;
-            text-align: center !important;
-            padding: 20px !important;
-            margin: 10px auto 40px !important;
-            max-width: 80% !important;
-            position: relative !important;
-            z-index: 10 !important;
-        }
-        
-        /* 容器样式调整 */
-        .container {
-            margin: 0 auto;
-            padding: 20px;
+            color: #000;
+            font-size: 20px;
+            font-weight: bold;
             text-align: center;
+            padding: 20px;
+            margin: 0 auto 40px;
+            max-width: 80%;
         }
         
-        .body_left {
-            margin: 0 auto 30px;
-            display: inline-block;
-        }
-        
-        .body_center {
-            display: block;
+        /* 页脚样式 */
+        .footer {
+            max-width: 500px;
             margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .border {
+            width: 100%;
+        }
+        
+        .border-top, .border-bottom {
+            height: 1px;
+            background-color: #ddd;
+            margin: 10px 0;
+        }
+        
+        /* 简单动画 */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .block {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
 
 <body>
-
+    <!-- 音频 -->
     <audio autoplay loop id="audios" preload="auto">
-        <source src="MP3/1.mp3" />
+        <source src="MP3/1.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="container" onselectstart="return false;" unselectable="on" style="-moz-user-select:none;">
-
+    <div class="container" onselectstart="return false;" style="-moz-user-select:none;">
+        <!-- 左侧图片 -->
         <div class="body_left">
             <img src="images/biubiubiu.gif" alt="动态图片" ondragstart='return false;'>
         </div>
 
-        <div class="body_center love">
-            <div class="block">
-                <div class="div1"></div>
-                <div class="div2"></div>
-                <div class="div3"></div>
-                <div class="div4"></div>
+        <!-- 爱心区域 -->
+        <div class="body_center">
+            <div class="love">
+                <div class="block">
+                    <div class="div1"></div>
+                    <div class="div2"></div>
+                    <div class="div3"></div>
+                    <div class="div4"></div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- 文字区域 -->
     <div class="text-display">
         马子轩小朋友，你是这世界上最值得被温柔对待的人呀
     </div>
 
+    <!-- 页脚 -->
     <div class="footer">
         <div class="border">
             <div class="border-top"></div>
@@ -129,24 +176,30 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        // 确保爱心和文字都能显示的初始化代码
-        window.onload = function() {
-            // 强制显示爱心元素
-            const loveParts = document.querySelectorAll('.block > div');
-            loveParts.forEach(part => {
-                part.style.display = 'block';
-                part.style.opacity = '1';
+    <script>
+        // 确保所有元素加载完成后显示
+        window.addEventListener('load', function() {
+            // 检查并显示爱心元素
+            const loveElements = document.querySelectorAll('.div1, .div2, .div3, .div4');
+            loveElements.forEach(el => {
+                el.style.display = 'block';
             });
             
-            // 强制显示文字
+            // 检查并显示文字
             const textElement = document.querySelector('.text-display');
             if (textElement) {
                 textElement.style.display = 'block';
-                textElement.style.opacity = '1';
             }
-        };
+            
+            // 音频播放处理
+            const audio = document.getElementById('audios');
+            if (audio) {
+                document.body.addEventListener('click', function play() {
+                    audio.play().catch(e => console.log('点击页面播放音频'));
+                    document.body.removeEventListener('click', play);
+                });
+            }
+        });
     </script>
-
 </body>
 </html>
