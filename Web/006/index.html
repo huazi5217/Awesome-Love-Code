@@ -1,26 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <title>马子轩小朋友</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="language" content="zh-CN">
     <meta name="title" content="马子轩小朋友">
     <meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code">
     <meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! ">
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
     <link rel="stylesheet" href="css/love.css">
+    <style>
+        /* 文字区域样式 */
+        .love-message {
+            max-width: 600px;
+            margin: 30px auto 50px;
+            padding: 0 20px;
+            text-align: center;
+            opacity: 0; /* 初始隐藏 */
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .love-message.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .love-message p {
+            color: #000; /* 黑色文字 */
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .love-message p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .love-message {
+                margin: 20px 15px 40px;
+            }
+            
+            .love-message p {
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <audio autoplay="autopaly" loop="loop" id="audios" preload="auto">
+    <audio autoplay loop id="audios" preload="auto">
         <source src="MP3/1.mp3" />
     </audio>
 
     <div class="container" onselectstart="return false;" unselectable="on" style="-moz-user-select:none;">
 
         <div class="body_left">
-            <img src="images/biubiubiu.gif" alt="" ondragstart='return false;'>
+            <img src="images/biubiubiu.gif" alt="动态图片" ondragstart='return false;'>
         </div>
 
         <div class="body_center love">
@@ -33,6 +73,13 @@
         </div>
     </div>
 
+    <!-- 爱心下方的文字区域 -->
+    <div class="love-message">
+        <p>马子轩小朋友，看到这颗心了吗？它代表着我对你满满的祝福和鼓励。</p>
+        <p>不管遇到什么困难，都要记得有人在默默为你加油。相信自己，你一定能绽放出最耀眼的光芒。</p>
+        <p>愿你每天都有小小的进步，一步一步朝着自己的梦想前进，未来可期！</p>
+    </div>
+
     <div class="footer">
         <div class="border">
             <div class="border-top"></div>
@@ -41,6 +88,24 @@
     </div>
 
     <script type="text/javascript" src="js/love.js"></script>
+    <script>
+        // 等待爱心生成后显示文字
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检测爱心动画是否完成（假设爱心动画持续约2秒）
+            setTimeout(function() {
+                const message = document.querySelector('.love-message');
+                if (message) {
+                    message.classList.add('visible');
+                }
+            }, 2000); // 延迟时间可根据实际爱心动画时长调整
+            
+            // 处理音频播放
+            const audio = document.getElementById('audios');
+            document.body.addEventListener('click', function() {
+                audio.play().catch(e => console.log('需要用户交互才能播放音频'));
+            }, { once: true });
+        });
+    </script>
 
 </body>
 
