@@ -13,7 +13,7 @@
     <style>
         /* 加快爱心动画速度 */
         .love .block {
-            animation: pulse 0.8s infinite; /* 缩短脉动周期 */
+            animation: pulse 0.5s infinite; /* 缩短脉动周期 */
         }
         
         @keyframes pulse {
@@ -74,7 +74,7 @@
                 setTimeout(() => {
                     block.style.opacity = '1';
                     block.style.transform = 'scale(1)';
-                }, index * 100); // 每个元素间隔100ms出现，原版可能是300-500ms
+                }, index * 10); // 每个元素间隔100ms出现，原版可能是300-500ms
             });
 
             // 处理音频播放
